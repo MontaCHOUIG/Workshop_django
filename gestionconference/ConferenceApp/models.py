@@ -48,7 +48,7 @@ class Conference(models.Model):
 
 
 class Submission(models.Model):
-  submission_id = models.CharField(primary_key=True, max_length=11, editable=False)
+  submission_id = models.CharField(primary_key=True, max_length=11, unique=True)
   user = models.ForeignKey("UserApp.User", on_delete=models.CASCADE , related_name="submissions")
   conference = models.ForeignKey(Conference,on_delete=models.CASCADE,related_name="submissions")
   titre = models.CharField(max_length=255)
@@ -87,6 +87,7 @@ class Submission(models.Model):
     super().save(*args, **kwargs)
   
   def clean(self):
-    if self.submission_date.date() > self.conference.start_date:
-        raise ValidationError("La date de soumission doit être antérieure à la date de début de la conférence.")
+    if self.submission_date and self.conference:
+      if self.submission_date.date() > self.conference.start_date:
+          raise ValidationError("La date de soumission doit être antérieure à la date de début de la conférence.")
 
