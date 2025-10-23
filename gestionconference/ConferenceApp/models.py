@@ -42,8 +42,9 @@ class Conference(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   def clean(self):
-     if self.start_date > self.end_date:
-       raise ValidationError("La date de fin doit être postérieure à la date de début.")
+     if self.start_date and self.end_date:
+         if self.start_date > self.end_date:
+           raise ValidationError("La date de fin doit être postérieure à la date de début.")
 
 
 

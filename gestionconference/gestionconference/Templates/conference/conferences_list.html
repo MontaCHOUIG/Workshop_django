@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <h2>List of Conferences</h2>
 <table>
   <tr>
@@ -12,6 +13,8 @@
     <td>{{ c.theme }}</td>
     <td>
       <a href="{% url 'conference-details' c.conference_id %}">View Details</a>
+      <a href="{% url 'conference-update' c.conference_id %}">Edit details</a>
+      <a href="{% url 'conference-delete' c.conference_id %}">Delete</a>
     </td>
     <td>{{ c.location }}</td>
 
@@ -20,3 +23,4 @@
   </tr>
   {% endfor %}
 </table>
+{% endblock %}

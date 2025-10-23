@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<p>voulez vous confirmer la suppression de {{object.name}}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">OUI</button>
+  <a href="{% url 'conference-list' %}">Non</a>
+</form>
+{% endblock %}
