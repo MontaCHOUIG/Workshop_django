@@ -3,13 +3,18 @@
   <tr>
     <td>title</td>
     <td>location</td>
+    <td>action</td>
   </tr>
   {% for c in conferences%}
 
   <tr>
     <td>{{ c.name }}</td>
     <td>{{ c.theme }}</td>
+    <td>
+      <a href="{% url 'conference-details' c.conference_id %}">View Details</a>
+    </td>
     <td>{{ c.location }}</td>
+
     <td>{{ c.start_date }}</td>
     <td>{{ c.end_date }}</td>
   </tr>
