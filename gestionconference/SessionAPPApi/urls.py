@@ -15,7 +15,4 @@ urlpatterns = [
   path('user/',include('UserApp.urls')),
   path('api/',include('SessionAPPApi.urls')),
 
-
-
-
 ]
